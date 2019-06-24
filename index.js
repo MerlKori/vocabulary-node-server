@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 3000;
 const createHandlers = require('./CRUD/index');
 const createDB = require('./create-db');
 const wordsDB = createDB('db/words');
+const tagsDB = createDB('db/tags');
 const bodyParser = require('body-parser');
 
 app.use(function (req, res, next) {
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 
 
 createHandlers(wordsDB, app, '/');
+createHandlers(tagsDB, app, '/tags');
 
 app.listen(PORT, function () {
 	console.log(`Server listening on port ${PORT}!`);
